@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <InvariantGlobalization>false</InvariantGlobalization>
+	<RootNamespace>CleanArch.WebApi</RootNamespace>
+	<AssemblyName>CleanArch.WebApi</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Lightsoft.ActiveDirectory" Version="0.0.0.4" />
+    <PackageReference Include="Lightsoft.AspNetCore.Extensions" Version="0.0.0.26" />
+    <PackageReference Include="Lightsoft.Serilog" Version="0.0.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Infrastructure.Auth\Infrastructure.Auth.csproj" />
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
