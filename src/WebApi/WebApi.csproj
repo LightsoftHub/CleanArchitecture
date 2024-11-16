@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Lightsoft.ActiveDirectory" Version="0.0.0.5" />
+    <PackageReference Include="Lightsoft.ActiveDirectory" Version="0.0.0.6" />
     <PackageReference Include="Lightsoft.AspNetCore.Extensions" Version="0.0.0.27" />
     <PackageReference Include="Lightsoft.Serilog" Version="0.0.0.4" />
   </ItemGroup>

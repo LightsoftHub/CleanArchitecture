@@ -12,7 +12,7 @@
     <PackageReference Include="Lightsoft.AspNetCore.Swagger" Version="0.0.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.0" />
-    <PackageReference Include="Lightsoft.Identity.EntityFrameworkCore" Version="0.0.0.5" />
+    <PackageReference Include="Lightsoft.Identity.EntityFrameworkCore" Version="0.0.0.6" />
 	<PackageReference Include="Spectre.Console" Version="0.49.1" />
   </ItemGroup>
 

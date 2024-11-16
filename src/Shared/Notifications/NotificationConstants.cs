@@ -1,4 +1,4 @@
-﻿namespace CleanArch.WebApi.SignalR;
+﻿namespace CleanArch.Shared.Notifications;
 
 public static class NotificationConstants
 {

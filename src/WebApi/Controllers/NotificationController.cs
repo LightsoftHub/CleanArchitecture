@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CleanArch.WebApi.Controllers;
 
-public class SignalrController(ICurrentUser currentUser) : VersionedApiController
+public class NotificationController(ICurrentUser currentUser) : VersionedApiController
 {
     [HttpGet]
     public async Task<IActionResult> GetAsync([FromQuery] GetNotifications request)
