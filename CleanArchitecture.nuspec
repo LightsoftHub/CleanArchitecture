@@ -3,7 +3,7 @@
   <metadata>
     <id>CleanArch.Solution.Template</id>
     <title>ASP.NET Core Clean Architecture Solution Template</title>
-    <version>0.0.0.7-alpha</version>
+    <version>0.0.0.8</version>
     <authors>minhvu</authors>
     <description>
       Clean Architecture Solution Template popularized by minhvu.
