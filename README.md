@@ -2,9 +2,9 @@
 
 ## Technologies
 
-* .NET 8
+* .NET 9
 * Light Framework
-* Entity Framework Core 8
+* Entity Framework Core 9
 * MediatR
 * Mapster
 * FluentValidation
