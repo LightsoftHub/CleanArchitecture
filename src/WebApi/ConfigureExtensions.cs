@@ -51,7 +51,11 @@ public static class ConfigureExtensions
         ArgumentNullException.ThrowIfNull(jwtSettings, nameof(JwtOptions));
         services.AddJwtAuth(jwtSettings.Issuer, jwtSettings.SecretKey); // inject this for use jwt auth
 
-        services.AddActiveDirectory();
+        var domainName = configuration.GetValue<string>("AD");
+        if (domainName != null)
+        {
+            services.AddActiveDirectory(x => x.Name = domainName);
+        }
 
         return services;
     }

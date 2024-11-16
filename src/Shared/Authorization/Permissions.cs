@@ -12,6 +12,19 @@ public class Permissions
         public const string Notification = $"{nameof(System)}.{nameof(Notification)}";
     }
 
+    [DisplayName("Tenants")]
+    [Description("Tenants Management")]
+    public static class Tenants
+    {
+        private const string _user = nameof(Users);
+
+        [Display(Name = "View users list")]
+        public const string View = $"{_user}.{nameof(View)}";
+        public const string Create = $"{_user}.{nameof(Create)}";
+        public const string Update = $"{_user}.{nameof(Update)}";
+        public const string Delete = $"{_user}.{nameof(Delete)}";
+    }
+
     [DisplayName("Users")]
     [Description("Users Management")]
     public static class Users
