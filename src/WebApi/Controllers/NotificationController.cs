@@ -38,6 +38,13 @@ public class NotificationController(ICurrentUser currentUser) : VersionedApiCont
         return res.ToActionResult();
     }
 
+    [HttpGet("read/{id}")]
+    public async Task<IActionResult> ReadAsync(string id)
+    {
+        var res = await Mediator.Send(new MarkNotificationAsRead(id));
+        return res.ToActionResult();
+    }
+
     [HttpPost]
     public async Task<IActionResult> PostAsync([FromBody] AddNotification request)
     {

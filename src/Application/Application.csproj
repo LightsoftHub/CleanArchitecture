@@ -9,8 +9,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-	<PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.10.0" />
+	<PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.11.0" />
 	<PackageReference Include="Lightsoft.EntityFrameworkCore" Version="0.0.0.5" />
+	<PackageReference Include="Lightsoft.FileGenerator" Version="0.0.0.4" />
   </ItemGroup>
 
   <ItemGroup>

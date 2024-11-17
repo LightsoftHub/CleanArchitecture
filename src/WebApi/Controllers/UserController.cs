@@ -1,5 +1,6 @@
 ﻿using CleanArch.Shared.Authorization;
 using Light.ActiveDirectory.Interfaces;
+using Light.File.Excel;
 using Light.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,7 +9,8 @@ namespace CleanArch.WebApi.Controllers;
 [MustHavePermission(Permissions.Users.View)]
 public class UserController(
     IUserService userService,
-    IActiveDirectoryService activeDirectoryService) : VersionedApiController
+    IActiveDirectoryService activeDirectoryService,
+    IExcelService excelService) : VersionedApiController
 {
     [HttpGet]
     public async Task<IActionResult> GetAsync()
@@ -29,6 +31,14 @@ public class UserController(
     {
         var res = await userService.GetByUserNameAsync(username);
         return res.ToActionResult();
+    }
+
+    [HttpGet("export")]
+    public async Task<IActionResult> ExportAsync()
+    {
+        var users = await userService.GetAllAsync();
+        var stream = excelService.Export(users.Data);
+        return File(stream, "application/octet-stream", "Users.xlsx");
     }
 
     [HttpPost]
