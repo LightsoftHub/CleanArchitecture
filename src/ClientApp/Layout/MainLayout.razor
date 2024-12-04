@@ -1,0 +1,12 @@
+﻿@inherits LayoutComponentBase
+
+<MudThemeProvider Theme="currentTheme" />
+<MudPopoverProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+@Body
+
+@code {
+    MudTheme currentTheme = CleanArch.ClientApp.Theme.Theme.ApplicationTheme();
+}

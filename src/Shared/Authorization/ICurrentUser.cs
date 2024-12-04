@@ -16,8 +16,6 @@ public interface ICurrentUser
 
     string? Email { get; }
 
-    string? AccessToken { get; }
-
     bool IsAuthenticated { get; }
 
     bool IsMasterUser { get; }

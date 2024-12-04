@@ -1,13 +1,10 @@
-﻿using CleanArch.Infrastructure.Auth;
-using CleanArch.Shared.Authorization;
-using Microsoft.AspNetCore.Http;
-using System.Security.Claims;
+﻿using System.Security.Claims;
 
-namespace CleanArch.Infrastructure.Auth;
+namespace CleanArch.Shared.Authorization;
 
-public class CurrentUser(IHttpContextAccessor httpContextAccessor) : ICurrentUser
+public abstract class CurrentUserBase : ICurrentUser
 {
-    private ClaimsPrincipal? User => httpContextAccessor.HttpContext?.User;
+    protected virtual ClaimsPrincipal? User { get; set; }
 
     public string? UserId => User?.GetUserId();
 
@@ -26,8 +23,6 @@ public class CurrentUser(IHttpContextAccessor httpContextAccessor) : ICurrentUse
     public bool IsAuthenticated => User?.IsAuthenticated() is true;
 
     public bool IsMasterUser => DefaultUser.MASTER_USERS.Any(x => x == UserName);
-
-    public string? AccessToken => User?.FindFirstValue(Light.Identity.ClaimTypes.AccessToken);
 
     public bool IsInRole(string role) => User?.IsInRole(role) is true;
 

@@ -11,7 +11,5 @@ public static class Startup
         services
             .AddSingleton<IAuthorizationPolicyProvider, PermissionPolicyProvider>()
             .AddScoped<IAuthorizationHandler, PermissionAuthorizationHandler>();
-
-    public static IServiceCollection AddCurrentUser(this IServiceCollection services) =>
-        services.AddScoped<ICurrentUser, CurrentUser>();
+        
 }

@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using System.Security.Claims;
 
-namespace CleanArch.Infrastructure.Auth;
+namespace CleanArch.Shared.Authorization;
 
 public class ClaimsStore
 {
@@ -19,7 +19,7 @@ public class ClaimsStore
 
     private static List<Claim> GetAllClaims()
     {
-        var fromClass = typeof(Shared.Authorization.Permissions);
+        var fromClass = typeof(Permissions);
 
         var claims = new List<Claim>();
 

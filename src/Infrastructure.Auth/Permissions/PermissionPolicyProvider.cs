@@ -1,3 +1,4 @@
+using CleanArch.Shared.Authorization;
 using Light.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Options;

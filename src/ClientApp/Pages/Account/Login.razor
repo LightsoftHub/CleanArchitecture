@@ -1,0 +1,100 @@
+﻿@attribute [AllowAnonymous]
+@layout MainLayout
+
+@page "/account/login"
+
+@using CleanArch.ClientApp.Services
+@using System.ComponentModel.DataAnnotations
+
+@inject IIdentityManager IdentityManager
+
+<MudContainer MaxWidth="MaxWidth.ExtraSmall" Class="d-flex align-center" Style="height: 100vh;">
+    <div class="d-flex flex-column mud-width-full">
+        <div style="max-width:350px">
+            <MudPaper Elevation="0" Class="pa-8" Width="100%" Style="position: relative;">
+
+                <EditForm Model="@loginModel" OnSubmit="LoginSubmitAsync">
+
+                    <DataAnnotationsValidator />
+
+                    <MudTextField T="string" Label="Username" @bind-Value="@loginModel.Username" Variant="Variant.Outlined" Class="my-6"></MudTextField>
+
+                    <MudTextField @bind-Value="@loginModel.Password" Label="Password" Variant="Variant.Outlined" InputType="passwordInput" Adornment="Adornment.End" AdornmentIcon="@passwordInputIcon" OnAdornmentClick="TogglePasswordVisibility" />
+
+                    <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Text" Color="Color.Primary" Size="Size.Large" FullWidth="true" Class="mt-3">Sign In</MudButton>
+
+                </EditForm>
+
+                <MudOverlay Visible="loading" DarkBackground="true" Absolute="true" />
+
+            </MudPaper>
+
+            <MudAlert Severity="MudBlazor.Severity.Info" Class="mt-8 mud-width-full">No authentication is required, click sign in.</MudAlert>
+        </div>
+    </div>
+</MudContainer>
+
+@code {
+    [SupplyParameterFromQuery]
+    private string? ReturnUrl { get; set; }
+
+    private LoginModel loginModel = new();
+
+    bool passwordVisibility;
+    InputType passwordInput = InputType.Password;
+    string passwordInputIcon = Icons.Material.Filled.VisibilityOff;
+
+    bool loading = false;
+
+    protected override Task OnInitializedAsync()
+    {
+        //return LoginSubmitAsync();
+        //return Task.CompletedTask;
+        return IdentityManager.LogoutAsync();
+    }
+
+    private sealed class LoginModel
+    {
+        [Required]
+        public string Username { get; set; } = "super";
+
+        [Required]
+        [DataType(DataType.Password)]
+        public string Password { get; set; } = "123";
+    }
+
+    void TogglePasswordVisibility()
+    {
+        @if (passwordVisibility)
+        {
+            passwordVisibility = false;
+            passwordInputIcon = Icons.Material.Filled.VisibilityOff;
+            passwordInput = InputType.Password;
+        }
+        else
+        {
+            passwordVisibility = true;
+            passwordInputIcon = Icons.Material.Filled.Visibility;
+            passwordInput = InputType.Text;
+        }
+    }
+
+    private async Task LoginSubmitAsync()
+    {
+        loading = true;
+
+        var login = await CallGuarded.ExecuteAsync(() => IdentityManager.LoginAsync(loginModel.Username, loginModel.Password));
+
+        if (login.Succeeded)
+        {
+            ReturnUrl ??= "/";
+
+            NavigationManager.NavigateTo(ReturnUrl);
+        }
+        else
+        {
+            loading = false;
+        }
+        
+    }
+}
