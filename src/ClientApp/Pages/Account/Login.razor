@@ -17,15 +17,23 @@
 
                     <DataAnnotationsValidator />
 
-                    <MudTextField T="string" Label="Username" @bind-Value="@loginModel.Username" Variant="Variant.Outlined" Class="my-6"></MudTextField>
+                    <MudTextField T="string" Label="Username" @bind-Value="@loginModel.Username" Variant="Variant.Outlined" Class="my-6" Disabled="processing"></MudTextField>
 
-                    <MudTextField @bind-Value="@loginModel.Password" Label="Password" Variant="Variant.Outlined" InputType="passwordInput" Adornment="Adornment.End" AdornmentIcon="@passwordInputIcon" OnAdornmentClick="TogglePasswordVisibility" />
+                    <MudTextField @bind-Value="@loginModel.Password" Label="Password" Variant="Variant.Outlined" InputType="passwordInput" Adornment="Adornment.End" AdornmentIcon="@passwordInputIcon" OnAdornmentClick="TogglePasswordVisibility" Disabled="processing" />
 
-                    <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Text" Color="Color.Primary" Size="Size.Large" FullWidth="true" Class="mt-3">Sign In</MudButton>
+                    <MudButton Disabled="@processing" Variant="Variant.Text" Color="Color.Primary" ButtonType="ButtonType.Submit" FullWidth="true" Class="mt-3">
+                        @if (processing)
+                        {
+                            <MudProgressCircular Class="ms-n1" Size="Size.Small" Indeterminate="true" />
+                            <MudText Class="ms-2">Logging In</MudText>
+                        }
+                        else
+                        {
+                            <MudText>Login</MudText>
+                        }
+                    </MudButton>
 
                 </EditForm>
-
-                <MudOverlay Visible="loading" DarkBackground="true" Absolute="true" />
 
             </MudPaper>
 
@@ -44,7 +52,7 @@
     InputType passwordInput = InputType.Password;
     string passwordInputIcon = Icons.Material.Filled.VisibilityOff;
 
-    bool loading = false;
+    bool processing = false;
 
     protected override Task OnInitializedAsync()
     {
@@ -81,7 +89,7 @@
 
     private async Task LoginSubmitAsync()
     {
-        loading = true;
+        processing = true;
 
         var login = await CallGuarded.ExecuteAsync(() => IdentityManager.LoginAsync(loginModel.Username, loginModel.Password));
 
@@ -93,7 +101,7 @@
         }
         else
         {
-            loading = false;
+            processing = false;
         }
         
     }

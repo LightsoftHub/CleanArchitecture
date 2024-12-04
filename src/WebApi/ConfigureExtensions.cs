@@ -1,6 +1,7 @@
 ﻿using CleanArch.Application;
 using CleanArch.Infrastructure;
-using CleanArch.Infrastructure.Auth;
+using CleanArch.Shared.Authorization;
+using CleanArch.WebApi.Infrastructure.Auth;
 using Light.ActiveDirectory;
 using Light.AspNetCore.Builder;
 using Light.AspNetCore.CORS;
@@ -34,7 +35,7 @@ public static class ConfigureExtensions
     public static IServiceCollection AddAuth(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddHttpContextAccessor();
-        services.AddCurrentUser();
+        services.AddScoped<ICurrentUser, CurrentUserServer>();
 
         services.AddPermissions();
 

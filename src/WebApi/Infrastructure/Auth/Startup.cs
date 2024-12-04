@@ -1,9 +1,6 @@
-﻿using CleanArch.Infrastructure.Auth.Permissions;
-using CleanArch.Shared.Authorization;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.AspNetCore.Authorization;
 
-namespace CleanArch.Infrastructure.Auth;
+namespace CleanArch.WebApi.Infrastructure.Auth;
 
 public static class Startup
 {
@@ -11,5 +8,5 @@ public static class Startup
         services
             .AddSingleton<IAuthorizationPolicyProvider, PermissionPolicyProvider>()
             .AddScoped<IAuthorizationHandler, PermissionAuthorizationHandler>();
-        
+
 }

@@ -30,6 +30,6 @@ builder.Services.AddCascadingAuthenticationState();
 // register the custom state provider
 builder.Services.AddScoped<AuthenticationStateProvider, JwtAuthenticationStateProvider>();
 builder.Services.AddScoped(sp => (IIdentityManager)sp.GetRequiredService<AuthenticationStateProvider>());
-builder.Services.AddScoped<ICurrentUser, CurrentUser>();
+builder.Services.AddScoped<ICurrentUser, CurrentUserClient>();
 
 await builder.Build().RunAsync();
