@@ -9,7 +9,7 @@ Serilogger.EnsureInitialized();
 
 AnsiConsole.Write(new FigletText("eCode API").Color(Color.DodgerBlue1));
 
-bool useAspire = true;
+bool useAspire = false;
 
 try
 {
@@ -51,7 +51,7 @@ try
     app.MapEndpoints(allowAnonymous);
 
     // SignalR
-    app.UseWebSockets();
+    //app.UseWebSockets();
     app.MapNotificationHub();
 
     app.Run();
