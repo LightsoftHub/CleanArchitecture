@@ -9,11 +9,18 @@ Serilogger.EnsureInitialized();
 
 AnsiConsole.Write(new FigletText("eCode API").Color(Color.DodgerBlue1));
 
+bool useAspire = true;
+
 try
 {
     var builder = WebApplication.CreateBuilder(args);
 
     builder.Host.ConfigureSerilog();
+
+    if (useAspire)
+    {
+        builder.AddServiceDefaults();
+    }
 
     // Add services to the container.
 
@@ -35,7 +42,13 @@ try
 
     app.ConfigurePipelines(builder.Configuration);
 
-    app.MapEndpoints(builder.Configuration.GetValue<bool>("AllowAnonymous"));
+    if (useAspire)
+    {
+        app.MapDefaultEndpoints();
+    }
+
+    bool allowAnonymous = builder.Configuration.GetValue<bool>("AllowAnonymous");
+    app.MapEndpoints(allowAnonymous);
 
     // SignalR
     app.UseWebSockets();

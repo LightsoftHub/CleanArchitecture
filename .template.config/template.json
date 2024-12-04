@@ -1,10 +1,10 @@
 {
   "$schema": "http://json.schemastore.org/template",
   "author": "minhvu",
-  "classifications": [ "AspNetCore", "Web" ],
+  "classifications": [ "AspNetCore", "API" ],
+  "name": "Clean Architecture Solution Template",
   "identity": "Clean.Architecture.Solution.Template.CSharp",
   "groupIdentity": "Clean.Architecture.Solution.Template",
-  "name": "Clean Architecture Solution Template",
   "shortName": "clar-sln",
   "tags": {
     "language": "C#",

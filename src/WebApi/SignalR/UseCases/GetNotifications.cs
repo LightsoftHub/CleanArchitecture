@@ -17,6 +17,7 @@ internal class GetNotificationsHandler(AppIdentityDbContext context) :
     {
         return await context.Notifications
             .WhereIf(!string.IsNullOrEmpty(request.ToUser), x => x.ToUserId == request.ToUser)
+            .WhereIf(request.OnlyUnread == true, x => x.MarkAsRead == false)
             .AsNoTracking()
             .OrderByDescending(o => o.CreatedOn)
             .ProjectToType<NotificationDto>()
