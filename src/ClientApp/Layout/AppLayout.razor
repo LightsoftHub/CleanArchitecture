@@ -2,37 +2,27 @@
 @layout MainLayout
 
 <AuthorizeView>
-
     <Authorized>
-
-        
-
+        <MudLayout>
+            <MudAppBar Elevation="0">
+                <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
+                <MudSpacer />
+                <UserMenu />
+            </MudAppBar>
+            <MudDrawer @bind-Open="drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="0">
+                <NavMenu />
+            </MudDrawer>
+            <MudMainContent>
+                <MudContainer MaxWidth="MaxWidth.Large" Gutters="false" Style="padding-top: 2rem">
+                    @Body
+                </MudContainer>
+            </MudMainContent>
+        </MudLayout>
     </Authorized>
-
+    <NotAuthorized>
+        <RedirectToLogin />
+    </NotAuthorized>
 </AuthorizeView>
-
-<MudLayout>
-
-    <MudAppBar Elevation="0">
-        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
-        <MudSpacer />
-        <MudIconButton Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Edge="Edge.End" />
-    </MudAppBar>
-
-    <MudDrawer @bind-Open="drawerOpen" Elevation="0">
-        <MudDrawerHeader>
-            <MudText Typo="Typo.h5" Class="mt-1">Application</MudText>
-        </MudDrawerHeader>
-        @*NavMenu*@
-    </MudDrawer>
-
-    <MudMainContent>
-        <MudContainer MaxWidth="MaxWidth.Medium">
-            @Body
-        </MudContainer>
-    </MudMainContent>
-
-</MudLayout>
 
 @code {
     bool drawerOpen = true;

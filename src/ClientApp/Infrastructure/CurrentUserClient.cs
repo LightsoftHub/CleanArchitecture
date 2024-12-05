@@ -1,7 +1,8 @@
-﻿using CleanArch.Shared.Authorization;
+﻿using CleanArch.ClientApp.Services;
+using CleanArch.Shared.Authorization;
 using System.Security.Claims;
 
-namespace CleanArch.ClientApp.Services;
+namespace CleanArch.ClientApp.Infrastructure;
 
 public class CurrentUserClient(IIdentityManager identityManager) : CurrentUserBase, ICurrentUser
 {

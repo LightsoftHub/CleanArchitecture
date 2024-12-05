@@ -1,10 +1,11 @@
-﻿using CleanArch.HttpApi.Client.Identity;
+﻿using CleanArch.ClientApp.Services;
+using CleanArch.HttpApi.Client.Identity;
 using Light.Contracts;
 using Light.Identity;
 using Microsoft.AspNetCore.Components.Authorization;
 using System.Security.Claims;
 
-namespace CleanArch.ClientApp.Services;
+namespace CleanArch.ClientApp.Infrastructure.Identity;
 
 public class JwtAuthenticationStateProvider(
     IStorageService storageService,
@@ -50,7 +51,7 @@ public class JwtAuthenticationStateProvider(
     public async Task LogoutAsync()
     {
         await storageService.ClearAsync();
-        
+
         var anonymous = new ClaimsPrincipal(new ClaimsIdentity());
         var authState = Task.FromResult(new AuthenticationState(anonymous));
 

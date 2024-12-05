@@ -1,0 +1,64 @@
+﻿@inject IIdentityManager IdentityManager
+
+<MudMenu Class="ml-1" PositionAtCursor="false" AnchorOrigin="Origin.BottomLeft" TransformOrigin="Origin.BottomLeft">
+    <ActivatorContent>
+        <MudStack Row="true" AlignItems="AlignItems.Center">
+            @if (string.IsNullOrEmpty(username))
+            {
+                <MudAvatar Size="Size.Medium" Square="true">@username</MudAvatar>
+            }
+            else
+            {
+                <MudAvatar Size="Size.Medium" Square="true" Color="Color.Transparent">
+                    <MudImage Src="/images/avatar.jpg" Class="bg-transparent"></MudImage>
+                </MudAvatar>
+            }
+            <MudStack Justify="Justify.Center" Spacing="0">
+                <MudText Typo="Typo.body2">@username</MudText>
+                <MudText Typo="Typo.body2" Class="mud-text-secondary">@email</MudText>
+            </MudStack>
+        </MudStack>
+    </ActivatorContent>
+    <ChildContent>
+        <MudMenuItem>
+            <div class="d-flex align-center">
+                <MudIcon Class="mr-1" Size="Size.Small"
+                         Icon="@Icons.Material.Filled.Person" />
+                <MudText Align="Align.Center">Profile</MudText>
+            </div>
+        </MudMenuItem>
+        <MudMenuItem>
+            <div class="d-flex align-center">
+                <MudIcon Class="mr-1" Size="Size.Small"
+                         Icon="@Icons.Material.Filled.Settings" />
+                <MudText Align="Align.Center">Settings</MudText>
+            </div>
+        </MudMenuItem>
+        <MudMenuItem OnClick="LogoutAsync">
+            <div class="d-flex align-center">
+                <MudIcon Class="mr-1" Size="Size.Small"
+                         Icon="@Icons.Material.Filled.Logout" />
+                <MudText Align="Align.Center">Logout</MudText>
+            </div>
+        </MudMenuItem>
+    </ChildContent>
+</MudMenu>
+
+@code {
+    private string username => CurrentUser.Username ?? "";
+    private string firstName => CurrentUser.FirstName ?? "";
+    private string lastName => CurrentUser.LastName ?? "";
+    private string? phone => CurrentUser.PhoneNumber;
+    private string? email => CurrentUser.Email;
+
+    private async Task LogoutAsync()
+    {
+        bool? isConfirm = await DialogService.ShowMessageBox("Sign out!", "Are you sure?", yesText: "Sign out", cancelText: "Cancel");
+
+        if (isConfirm == true)
+        {
+            await IdentityManager.LogoutAsync();
+            StateHasChanged();
+        }
+    }
+}

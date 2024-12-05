@@ -1,0 +1,58 @@
+﻿@page "/notifications"
+
+<h3>Notifications</h3>
+
+<MudTable Items="@notifications" Dense="true" Hover="true" Breakpoint="Breakpoint.Sm" LoadingProgressColor="Color.Info">
+    <HeaderContent>
+        <MudTh>From</MudTh>
+        <MudTh>Title</MudTh>
+        <MudTh>Time</MudTh>
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd DataLabel="From">@context.FromName</MudTd>
+        <MudTd DataLabel="Title">@context.Title</MudTd>
+        <MudTd DataLabel="Time">@context.CreatedOn.ToUniversalTime()</MudTd>
+    </RowTemplate>
+    <PagerContent>
+        <div class="pa-5">
+            <Pagination PagedInfo=pageInfo OnPageNoChanged=GoToPageAsync />
+        </div>
+    </PagerContent>
+</MudTable>
+
+
+@code {
+    private PagedInfo? pageInfo { get; set; }
+
+    private NotificationLookup notificationLookup = new();
+
+    private IEnumerable<NotificationDto>? notifications;
+
+    private IEnumerable<UserDto>? selectedUsers { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GoToPageAsync(1);
+    }
+
+    private async Task LoadDataAsync()
+    {
+        var searchById = selectedUsers?.FirstOrDefault()?.Id ?? CurrentUser.UserId;
+
+        notificationLookup.ToUser = searchById;
+
+        var getEntries = await NotificationService.GetAsync(notificationLookup);
+
+        if (getEntries.Succeeded)
+        {
+            pageInfo = getEntries.PagedInfo;
+            notifications = getEntries.Data;
+        }
+    }
+
+    private async Task GoToPageAsync(int page)
+    {
+        notificationLookup.Page = page;
+        await LoadDataAsync();
+    }
+}

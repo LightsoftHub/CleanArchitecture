@@ -1,7 +1,7 @@
 ﻿using System.Security.Claims;
 using System.Text.Json;
 
-namespace CleanArch.ClientApp.Services;
+namespace CleanArch.ClientApp.Infrastructure.Identity;
 
 public class JwtExtensions
 {

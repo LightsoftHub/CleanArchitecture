@@ -1,5 +1,7 @@
 using Blazored.LocalStorage;
 using CleanArch.ClientApp;
+using CleanArch.ClientApp.Infrastructure;
+using CleanArch.ClientApp.Infrastructure.Identity;
 using CleanArch.ClientApp.Services;
 using CleanArch.HttpApi.Client;
 using CleanArch.Shared.Authorization;

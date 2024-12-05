@@ -1,0 +1,135 @@
+﻿@page "/users"
+
+<MudTable Items="@users" Loading="loading" Dense="true" Hover="true" Bordered="true" Striped="true" Filter="new Func<UserDto,bool>(FilterFunc)" Class="p-3">
+    <ToolBarContent>
+        <MudStack Row Spacing="0" Class="flex-grow-1" Justify="Justify.SpaceBetween">
+            <MudStack Row AlignItems="AlignItems.Start">
+                <MudIcon Icon="@Icons.Material.Filled.QrCodeScanner" Size="Size.Large" />
+                <MudStack Spacing="1">
+                    <MudText Typo="Typo.subtitle2">Users</MudText>
+                    <MudText Typo="Typo.body2">View all users</MudText>
+                </MudStack>
+                <MudStack Row Spacing="1">
+                    <MudButton Size="Size.Small" Variant="Variant.Filled" OnClick="LoadDataAsync" Disabled="@loading">
+                        <MudIcon Icon="@Icons.Material.Filled.Refresh" />
+                        <MudText>Refresh</MudText>
+                    </MudButton>
+                    <MudButton Size="Size.Small" Variant="Variant.Filled" OnClick="OpenCreateModalAsync">
+                        <MudIcon Icon="@Icons.Material.Filled.Add" />
+                        <MudText>New</MudText>
+                    </MudButton>
+                </MudStack>
+            </MudStack>
+            <MudStack Spacing="0" AlignItems="AlignItems.End">
+                <MudStack Row Spacing="1">
+                    <MudTextField @bind-Value="searchValue" Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+                </MudStack>
+            </MudStack>
+        </MudStack>
+    </ToolBarContent>
+    <HeaderContent>
+        <MudTh>User</MudTh>
+        <MudTh>Name</MudTh>
+        <MudTh>Email</MudTh>
+        <MudTh>Phone</MudTh>
+        <MudTh>Status</MudTh>
+        <MudTh>Action</MudTh>
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd DataLabel="User">@context.UserName</MudTd>
+        <MudTd DataLabel="Name">@context.FirstName @context.LastName</MudTd>
+        <MudTd DataLabel="Email">@context.Email</MudTd>
+        <MudTd DataLabel="Phone">@context.PhoneNumber</MudTd>
+        <MudTd DataLabel="Status">@context.Status</MudTd>
+        <MudTd DataLabel="Status">
+            <MudIconButton
+            Icon="@Icons.Material.Filled.Delete" Color="Color.Error" Size="Size.Small" aria-label="delete"
+            OnClick="() => DeleteAsync(context.Id, context.UserName)" />
+        </MudTd>
+    </RowTemplate>
+    <PagerContent>
+        <MudTablePager PageSizeOptions="[20, 50, 100]" />
+    </PagerContent>
+</MudTable>
+
+@code {
+    private bool loading = false;
+
+    private IEnumerable<UserDto>? users;
+
+    private string? searchValue;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadDataAsync();
+    }
+
+    private void ToggleTableState()
+    {
+        loading = !loading;
+        StateHasChanged();
+    }
+
+    private async Task LoadDataAsync()
+    {
+        ToggleTableState();
+
+        var get = await UserService.GetAsync();
+
+        if (get.Succeeded)
+        {
+            users = get.Data;
+        }
+
+        //await Task.Delay(5000);
+        ToggleTableState();
+    }
+
+    private bool FilterFunc(UserDto element)
+    {
+        if (string.IsNullOrWhiteSpace(searchValue))
+            return true;
+
+        if (!string.IsNullOrEmpty(element.UserName)
+            && element.UserName.Contains(searchValue, StringComparison.OrdinalIgnoreCase))
+            return true;
+
+        if (!string.IsNullOrEmpty(element.PhoneNumber)
+            && element.PhoneNumber.Contains(searchValue, StringComparison.OrdinalIgnoreCase))
+            return true;
+
+        return false;
+    }
+
+    private async Task DeleteAsync(string id, string? userName)
+    {
+        bool? isConfirm = await DialogService.ShowMessageBox("Warning", $"Confirm delete user {userName}?");
+
+        if (isConfirm == true)
+        {
+            var result = await CallGuarded.ExecuteAsync(
+                () => UserService.DeleteAsync(id),
+                $"User {userName} deleted",
+                () => LoadDataAsync());
+        }
+    }
+
+    private async Task OpenCreateModalAsync()
+    {
+        var options = new DialogOptions
+        {
+            BackdropClick = false,
+            CloseOnEscapeKey = false,
+            CloseButton = true,
+        };
+
+        var dialog = await DialogService.ShowAsync<AddUser_Modal>("Create New User", options);
+
+        var result = await CallGuarded.GetDialogResultAsync(dialog);
+
+        if (result.Succeeded)
+        {
+            await LoadDataAsync();
+        }
+    }
+}

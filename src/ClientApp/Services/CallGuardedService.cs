@@ -1,4 +1,5 @@
 ﻿using Light.Contracts;
+using MudBlazor;
 
 namespace CleanArch.ClientApp.Services;
 
@@ -14,9 +15,16 @@ public class CallGuardedService(IToastDisplay toastService)
         {
             result = await call();
 
-            if (result.Succeeded && !string.IsNullOrEmpty(successMessage))
+            if (result.Succeeded)
             {
-                toastService.ShowSuccess(successMessage);
+                if (!string.IsNullOrEmpty(successMessage))
+                {
+                    toastService.ShowSuccess(successMessage);
+                }
+                else
+                {
+                    toastService.Clear();
+                }
             }
             else
             {
@@ -57,5 +65,19 @@ public class CallGuardedService(IToastDisplay toastService)
         }
 
         return result;
+    }
+
+    public async Task<Result> GetDialogResultAsync(IDialogReference dialog)
+    {
+        var dialogResult = await dialog.Result;
+
+        if (dialogResult != null && dialogResult.Data != null)
+        {
+            var result = (Result)dialogResult.Data;
+
+            return result;
+        }
+
+        return Result.Error("Error when get");
     }
 }

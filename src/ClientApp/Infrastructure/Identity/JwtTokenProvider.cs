@@ -1,6 +1,6 @@
 ﻿using CleanArch.HttpApi.Client;
 
-namespace CleanArch.ClientApp.Services;
+namespace CleanArch.ClientApp.Infrastructure.Identity;
 
 public class JwtTokenProvider : ITokenProvider
 {

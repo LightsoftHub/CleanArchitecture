@@ -8,7 +8,7 @@ public abstract class CurrentUserBase : ICurrentUser
 
     public string? UserId => User?.GetUserId();
 
-    public string? UserName => User?.GetUserName();
+    public string? Username => User?.GetUserName();
 
     public string? FirstName => User?.GetFirstName();
 
@@ -22,7 +22,7 @@ public abstract class CurrentUserBase : ICurrentUser
 
     public bool IsAuthenticated => User?.IsAuthenticated() is true;
 
-    public bool IsMasterUser => DefaultUser.MASTER_USERS.Any(x => x == UserName);
+    public bool IsMasterUser => DefaultUser.MASTER_USERS.Any(x => x == Username);
 
     public bool IsInRole(string role) => User?.IsInRole(role) is true;
 
