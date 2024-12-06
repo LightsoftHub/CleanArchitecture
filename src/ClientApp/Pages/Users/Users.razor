@@ -1,5 +1,7 @@
 ﻿@page "/users"
 
+@attribute [MustHavePermission(Permissions.Users.View)]
+
 <div class="mb-5 d-flex justify-content-end">
     <MudButton Size="Size.Small" Variant="Variant.Outlined" OnClick="OpenCreateModalAsync">
         <MudIcon Icon="@Icons.Material.Filled.Add" />

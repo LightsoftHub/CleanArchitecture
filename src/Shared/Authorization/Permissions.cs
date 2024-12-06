@@ -16,37 +16,37 @@ public class Permissions
     [Description("Tenants Management")]
     public static class Tenants
     {
-        private const string _user = nameof(Users);
+        private const string root = nameof(Tenants);
 
         [Display(Name = "View users list")]
-        public const string View = $"{_user}.{nameof(View)}";
-        public const string Create = $"{_user}.{nameof(Create)}";
-        public const string Update = $"{_user}.{nameof(Update)}";
-        public const string Delete = $"{_user}.{nameof(Delete)}";
+        public const string View = $"{root}.{nameof(View)}";
+        public const string Create = $"{root}.{nameof(Create)}";
+        public const string Update = $"{root}.{nameof(Update)}";
+        public const string Delete = $"{root}.{nameof(Delete)}";
     }
 
     [DisplayName("Users")]
     [Description("Users Management")]
     public static class Users
     {
-        private const string _user = nameof(Users);
+        private const string root = nameof(Users);
 
         [Display(Name = "View users list")]
-        public const string View = $"{_user}.{nameof(View)}";
-        public const string Create = $"{_user}.{nameof(Create)}";
-        public const string Update = $"{_user}.{nameof(Update)}";
-        public const string Delete = $"{_user}.{nameof(Delete)}";
+        public const string View = $"{root}.{nameof(View)}";
+        public const string Create = $"{root}.{nameof(Create)}";
+        public const string Update = $"{root}.{nameof(Update)}";
+        public const string Delete = $"{root}.{nameof(Delete)}";
     }
 
     [Description("Roles Management")]
     public static class Roles
     {
-        private const string _role = nameof(Roles);
+        private const string root = nameof(Roles);
 
         [Display(Description = "use this to view roles list")]
-        public const string View = $"{_role}.{nameof(View)}";
-        public const string Create = $"{_role}.{nameof(Create)}";
-        public const string Update = $"{_role}.{nameof(Update)}";
-        public const string Delete = $"{_role}.{nameof(Delete)}";
+        public const string View = $"{root}.{nameof(View)}";
+        public const string Create = $"{root}.{nameof(Create)}";
+        public const string Update = $"{root}.{nameof(Update)}";
+        public const string Delete = $"{root}.{nameof(Delete)}";
     }
 }

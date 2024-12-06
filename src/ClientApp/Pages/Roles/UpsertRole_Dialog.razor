@@ -16,6 +16,31 @@
                     </div>
                 </div>
 
+                <div class="mt-3">
+                    <h4>Permissions</h4>
+
+                    @foreach (var group in appClaims.Groups)
+                    {
+                        var groupClaims = appClaims.Claims.Where(x => x.GroupName == group.Name);
+
+                        var isChecked = groupClaims.All(x => x.IsOwned == true);
+
+                        <MudCheckBox
+                        Label="@group.ToString()" Dense="true"
+                        @bind-Value:get="isChecked"
+                        @bind-Value:set="c => OnResourceTypeVisibilityChanged(group.Name, c)" />
+
+                        @foreach (var claim in groupClaims)
+                        {
+                            <MudCheckBox
+                            Label="@claim.Name" Dense="true" Size="Size.Small" Color="Color.Primary"
+                            Style="margin-left: 25px"
+                            @bind-Value="claim.IsOwned"></MudCheckBox>
+                        }
+                    }
+
+                </div>
+
             </EditForm>
         }
         else
@@ -53,10 +78,41 @@
 
     private CreateRoleRequest newRole = new();
 
+    private AppClaimsVm appClaims = ClientClaimsExtensions.GetAll();
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (Role != null)
+        {
+            var roleDetails = await RoleService.GetByIdAsync(Role.Id);
+
+            Role = roleDetails.Data;
+
+            foreach (var claim in Role.Claims)
+            {
+                var appClaim = appClaims.Claims.Where(x => x.Value == claim.Value).FirstOrDefault();
+
+                if (appClaim != null)
+                {
+                    appClaim.IsOwned = true;
+                }
+            }
+        }
+    }
+
     private async Task OnSubmit()
     {
         if (Role != null)
         {
+            Role.Claims = appClaims.Claims
+                .Where(x => x.IsOwned == true)
+                .Select(s => new ClaimDto
+                {
+                    Type = ClaimTypes.Permission,
+                    Value = s.Value
+                })
+                .ToList();
+            
             await CallGuarded.ExecuteAsync(
                 () => RoleService.UpdateAsync(Role),
                 $"Role {newRole.Name} updated",
@@ -68,6 +124,16 @@
                 () => RoleService.CreateAsync(newRole),
                 $"New role {newRole.Name} created",
                 dialog);
+        }
+    }
+
+    private void OnResourceTypeVisibilityChanged(string resourceType, bool isVisible)
+    {
+        var groupClaims = appClaims.Claims.Where(x => x.GroupName == resourceType);
+
+        foreach (var groupClaim in groupClaims)
+        {
+            groupClaim.IsOwned = isVisible;
         }
     }
 }

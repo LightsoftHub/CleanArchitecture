@@ -1,6 +1,6 @@
 ﻿using MudBlazor;
 
-namespace CleanArch.ClientApp;
+namespace CleanArch.ClientApp.Common;
 
 public class WebSettings
 {

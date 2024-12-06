@@ -3,7 +3,7 @@
 
 @page "/account/login"
 
-@using CleanArch.ClientApp.Services
+@using CleanArch.ClientApp.Services;
 
 @inject IIdentityManager IdentityManager
 
@@ -20,7 +20,7 @@
 
                     <MudTextField @bind-Value="@loginModel.Password" Label="Password" Variant="Variant.Outlined" InputType="passwordInput" Adornment="Adornment.End" AdornmentIcon="@passwordInputIcon" OnAdornmentClick="TogglePasswordVisibility" Disabled="processing" />
 
-                    <MudButton Disabled="@processing" Variant="Variant.Text" Color="Color.Primary" ButtonType="ButtonType.Submit" FullWidth="true" Class="mt-3">
+                    <MudButton Disabled="@processing" Variant="Variant.Filled" Color="Color.Primary" ButtonType="ButtonType.Submit" FullWidth="true" Class="mt-3">
                         @if (processing)
                         {
                             <MudProgressCircular Class="ms-n1" Size="Size.Small" Indeterminate="true" />
