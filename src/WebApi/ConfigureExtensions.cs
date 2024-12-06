@@ -35,7 +35,7 @@ public static class ConfigureExtensions
     public static IServiceCollection AddAuth(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddHttpContextAccessor();
-        services.AddScoped<ICurrentUser, CurrentUserServer>();
+        services.AddScoped<ICurrentUser, ServerCurrentUser>();
 
         services.AddPermissions();
 

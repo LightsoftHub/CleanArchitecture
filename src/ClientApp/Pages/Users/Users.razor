@@ -3,7 +3,7 @@
 <div class="mb-5 d-flex justify-content-end">
     <MudButton Size="Size.Small" Variant="Variant.Outlined" OnClick="OpenCreateModalAsync">
         <MudIcon Icon="@Icons.Material.Filled.Add" />
-        <MudText>New</MudText>
+        <MudText>Create</MudText>
     </MudButton>
 </div>
 
@@ -13,7 +13,7 @@
             <MudStack Row AlignItems="AlignItems.Start">
                 <MudIcon Icon="@Icons.Material.Filled.QrCodeScanner" Size="Size.Large" />
                 <MudStack Spacing="1">
-                    <MudText Typo="Typo.subtitle2">Users</MudText>
+                    <MudText Typo="Typo.subtitle2">USERS</MudText>
                     <MudText Typo="Typo.body2">View all users</MudText>
                 </MudStack>
             </MudStack>
@@ -42,10 +42,10 @@
         <MudTd DataLabel="Email">@context.Email</MudTd>
         <MudTd DataLabel="Phone">@context.PhoneNumber</MudTd>
         <MudTd DataLabel="Status"><span class="badge text-bg-primary">@context.Status</span></MudTd>
-        <MudTd DataLabel="Status">
+        <MudTd DataLabel="Action">
             <MudIconButton
-                Icon="@Icons.Material.Filled.Delete" Color="Color.Error" Size="Size.Small" aria-label="delete"
-                OnClick="() => DeleteAsync(context.Id, context.UserName)" />
+            Icon="@Icons.Material.Filled.Delete" Color="Color.Error" Size="Size.Small" aria-label="delete"
+            OnClick="() => DeleteAsync(context.Id, context.UserName)" />
         </MudTd>
     </RowTemplate>
     <PagerContent>
@@ -68,7 +68,7 @@
     private void ToggleTableState()
     {
         loading = !loading;
-        StateHasChanged();
+        //StateHasChanged();
     }
 
     private async Task LoadDataAsync()
@@ -82,7 +82,6 @@
             users = get.Data;
         }
 
-        //await Task.Delay(5000);
         ToggleTableState();
     }
 
@@ -117,12 +116,7 @@
 
     private async Task OpenCreateModalAsync()
     {
-        var options = new DialogOptions
-        {
-            BackdropClick = false,
-            CloseOnEscapeKey = false,
-            CloseButton = true,
-        };
+        var options = WebSettings.DEFAULT_DIALOG_OPTIONS;
 
         var dialog = await DialogService.ShowAsync<AddUser_Modal>("Create New User", options);
 

@@ -1,0 +1,73 @@
+﻿<MudDialog>
+    <DialogContent>
+
+        @if (Role != null)
+        {
+            <EditForm Model="@Role" method="post" OnValidSubmit=OnSubmit FormName="editForm" class="d-grid gap-3">
+
+                <DataAnnotationsValidator />
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <MudTextField @bind-Value=Role.Name Label="Name" />
+                    </div>
+                    <div class="col-sm-8">
+                        <MudTextField @bind-Value=Role.Description Label="Description" AutoGrow="true" />
+                    </div>
+                </div>
+
+            </EditForm>
+        }
+        else
+        {
+            <EditForm Model="@newRole" method="post" OnValidSubmit=OnSubmit FormName="createForm" class="d-grid gap-3">
+
+                <DataAnnotationsValidator />
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <MudTextField @bind-Value=newRole.Name Label="Name" />
+                    </div>
+                    <div class="col-sm-8">
+                        <MudTextField @bind-Value=newRole.Description Label="Description" AutoGrow="true" />
+                    </div>
+                </div>
+
+            </EditForm>
+        }
+
+    </DialogContent>
+
+    <DialogActions>
+        <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="OnSubmit">Save</MudButton>
+    </DialogActions>
+
+</MudDialog>
+
+@code {
+    [CascadingParameter]
+    private IMudDialogInstance dialog { get; set; } = default!;
+
+    [Parameter]
+    public RoleDto? Role { get; set; }
+
+    private CreateRoleRequest newRole = new();
+
+    private async Task OnSubmit()
+    {
+        if (Role != null)
+        {
+            await CallGuarded.ExecuteAsync(
+                () => RoleService.UpdateAsync(Role),
+                $"Role {newRole.Name} updated",
+                dialog);
+        }
+        else
+        {
+            await CallGuarded.ExecuteAsync(
+                () => RoleService.CreateAsync(newRole),
+                $"New role {newRole.Name} created",
+                dialog);
+        }
+    }
+}

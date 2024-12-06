@@ -1,4 +1,4 @@
-﻿<MudDialog>
+﻿<MudDialog Style="position: relative">
     <DialogContent>
 
         <EditForm Model="@newUser" method="post" OnValidSubmit=OnSubmit FormName="createForm">
@@ -44,19 +44,27 @@
 
     <DialogActions>
         <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="OnSubmit">Save</MudButton>
+
+        <MudOverlay Visible="searching" DarkBackground="true" Absolute="true">
+            <MudProgressCircular Color="Color.Primary" Indeterminate="true" />
+        </MudOverlay>
     </DialogActions>
 
 </MudDialog>
 
 @code {
     [CascadingParameter]
-    public IMudDialogInstance MudDialog { get; set; } = default!;
+    private IMudDialogInstance dialog { get; set; } = default!;
+
+    private bool searching = false;
 
     private CreateUserRequest newUser = new();
 
     private async Task SearchUserDomain()
     {
         var username = newUser.UserName;
+
+        ToggleSearchStatus();
 
         if (string.IsNullOrEmpty(username))
             return;
@@ -71,13 +79,20 @@
             newUser.PhoneNumber = getDomainUser.Data.PhoneNumber;
             newUser.UseDomainPassword = true;
         }
+
+        ToggleSearchStatus();
+    }
+
+    private void ToggleSearchStatus()
+    {
+        searching = !searching;
     }
 
     private async Task OnSubmit()
     {
-        var result = await CallGuarded.ExecuteAsync(() => UserService.CreateAsync(newUser), $"New user {newUser.UserName} created");
-
-        if (result.Succeeded)
-            MudDialog.Close(DialogResult.Ok(result));
+        var result = await CallGuarded.ExecuteAsync(
+            () => UserService.CreateAsync(newUser),
+            $"New user {newUser.UserName} created",
+            dialog);
     }
 }

@@ -1,0 +1,142 @@
+﻿@page "/roles"
+
+<MudToolBar Class="justify-content-end">
+    <MudIconButton Icon="@Icons.Material.Outlined.Refresh" Color="Color.Primary" Disabled="@loading" OnClick="LoadDataAsync" />
+    <MudIconButton Icon="@Icons.Material.Outlined.AddCircle" Color="Color.Primary" OnClick="@(() => OpenCreateModalAsync())" />
+</MudToolBar>
+
+<MudTable Items="@roles" Loading="loading" Dense="true" Hover="true" Striped="true" Filter="new Func<RoleDto,bool>(FilterFunc)" Class="p-3">
+    <ToolBarContent>
+        <div class="row w-100">
+            <div class="col-6">
+                <MudStack Row AlignItems="AlignItems.Start">
+                    <MudIcon Icon="@Icons.Material.Filled.QrCodeScanner" Size="Size.Large" />
+                    <MudStack Spacing="1">
+                        <MudText Typo="Typo.subtitle2">ROLES</MudText>
+                        <MudText Typo="Typo.body2">View all roles</MudText>
+                    </MudStack>
+                </MudStack>
+            </div>
+            <div class="col-6 justify-content-end">
+                <MudStack Spacing="0" AlignItems="AlignItems.End">
+                    <MudTextField @bind-Value="searchValue" Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+                </MudStack>
+            </div>
+        </div>
+    </ToolBarContent>
+    <HeaderContent>
+        <MudTh>Name</MudTh>
+        <MudTh>Description</MudTh>
+        <MudTh>Action</MudTh>
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd DataLabel="Name">@context.Name</MudTd>
+        <MudTd DataLabel="Description">@context.Description</MudTd>
+        <MudTd DataLabel="Action">
+            <MudIconButton Icon="@Icons.Material.Filled.Edit"
+            Color="Color.Primary" Size="Size.Small" aria-label="delete"
+            OnClick="() => OpenCreateModalAsync(context)" />
+            <MudIconButton Icon="@Icons.Material.Filled.Delete"
+            Color="Color.Error" Size="Size.Small" aria-label="delete"
+            OnClick="() => DeleteAsync(context.Id, context.Name)" />
+        </MudTd>
+    </RowTemplate>
+    <PagerContent>
+        <MudTablePager PageSizeOptions="[20, 50, 100]" />
+    </PagerContent>
+</MudTable>
+
+<UpdateRole_Panel Open="openEditPanel" />
+
+@code {
+    private bool loading = false;
+
+    private IEnumerable<RoleDto>? roles;
+
+    private string? searchValue;
+
+    private bool openEditPanel = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadDataAsync();
+    }
+
+    private void ToggleTableState()
+    {
+        loading = !loading;
+    }
+
+    private async Task LoadDataAsync()
+    {
+        ToggleTableState();
+
+        var get = await RoleService.GetAsync();
+
+        if (get.Succeeded)
+        {
+            roles = get.Data;
+        }
+
+        ToggleTableState();
+    }
+
+    private bool FilterFunc(RoleDto element)
+    {
+        if (string.IsNullOrWhiteSpace(searchValue))
+            return true;
+
+        if (!string.IsNullOrEmpty(element.Name)
+            && element.Name.Contains(searchValue, StringComparison.OrdinalIgnoreCase))
+            return true;
+
+        return false;
+    }
+
+    private async Task DeleteAsync(string id, string? name)
+    {
+        bool? isConfirm = await DialogService.ShowMessageBox("Warning", $"Confirm delete role {name}?");
+
+        if (isConfirm == true)
+        {
+            var result = await CallGuarded.ExecuteAsync(
+                () => RoleService.DeleteAsync(id),
+                $"Role {name} deleted",
+                () => LoadDataAsync());
+        }
+    }
+
+    private async Task OpenCreateModalAsync(RoleDto? role = null)
+    {
+        var options = WebSettings.DEFAULT_DIALOG_OPTIONS;
+
+        IDialogReference dialog;
+
+        if (role == null)
+        {
+            dialog = await DialogService.ShowAsync<UpsertRole_Dialog>("Create New Role", options);
+        }
+        else
+        {
+            var parameters = new DialogParameters<UpsertRole_Dialog>
+            {
+                { x => x.Role, role }
+            };
+            
+            dialog = await DialogService.ShowAsync<UpsertRole_Dialog>("Update Role", parameters, options);
+        }
+
+        var result = await CallGuarded.GetDialogResultAsync(dialog);
+
+        if (result.Succeeded)
+        {
+            await LoadDataAsync();
+        }
+    }
+
+    private async Task OpenEditPanelAsync(string roleId)
+    {
+        openEditPanel = true;
+        await Task.Delay(1000);
+    }
+}

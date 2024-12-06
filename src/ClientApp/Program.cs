@@ -18,8 +18,8 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.
 builder.Services.AddMudServices();
 
 builder.Services.AddScoped<IToastDisplay, ToastDisplay>();
-builder.Services.AddScoped<CallGuardedService>();
 builder.Services.AddScoped<SpinnerService>();
+builder.Services.AddScoped<ICallGuardedService, CallGuardedService>();
 
 builder.Services.AddHttpClients(builder.Configuration);
 builder.Services.AddHttpServices(typeof(HttpApiClientModule).Assembly);
@@ -33,6 +33,6 @@ builder.Services.AddCascadingAuthenticationState();
 // register the custom state provider
 builder.Services.AddScoped<AuthenticationStateProvider, JwtAuthenticationStateProvider>();
 builder.Services.AddScoped(sp => (IIdentityManager)sp.GetRequiredService<AuthenticationStateProvider>());
-builder.Services.AddScoped<ICurrentUser, CurrentUserClient>();
+builder.Services.AddScoped<ICurrentUser, ClientCurrentUser>();
 
 await builder.Build().RunAsync();

@@ -3,7 +3,20 @@ using MudBlazor;
 
 namespace CleanArch.ClientApp.Services;
 
-public class CallGuardedService(IToastDisplay toastService, SpinnerService spinnerService)
+public interface ICallGuardedService
+{
+    Task<Result> ExecuteAsync(Func<Task<Result>> call, string successMessage = "");
+
+    Task<Result> ExecuteAsync(Func<Task<Result>> call, string successMessage, Func<Task<Result>> runIfSuccess);
+
+    Task<Result> ExecuteAsync(Func<Task<Result>> call, string successMessage, Func<Task> runIfSuccess);
+
+    Task<Result> ExecuteAsync(Func<Task<Result>> call, string successMessage, IMudDialogInstance dialog);
+
+    Task<Result> GetDialogResultAsync(IDialogReference dialog);
+}
+
+public class CallGuardedService(IToastDisplay toastService, SpinnerService spinnerService) : ICallGuardedService
 {
     public async Task<Result> ExecuteAsync(Func<Task<Result>> call, string successMessage = "")
     {
@@ -62,6 +75,18 @@ public class CallGuardedService(IToastDisplay toastService, SpinnerService spinn
         if (result.Succeeded)
         {
             await runIfSuccess();
+        }
+
+        return result;
+    }
+
+    public async Task<Result> ExecuteAsync(Func<Task<Result>> call, string successMessage, IMudDialogInstance dialog)
+    {
+        var result = await ExecuteAsync(call, successMessage);
+
+        if (result.Succeeded)
+        {
+            dialog.Close(DialogResult.Ok(result));
         }
 
         return result;

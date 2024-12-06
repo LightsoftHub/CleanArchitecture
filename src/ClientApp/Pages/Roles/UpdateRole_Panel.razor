@@ -1,0 +1,16 @@
+﻿<MudDrawer @bind-Open="@Open" Anchor="Anchor.Right" Elevation="1" Variant="@DrawerVariant.Temporary" OverlayAutoClose="false">
+    <MudDrawerHeader>
+        <MudText Typo="Typo.h6">My App</MudText>
+    </MudDrawerHeader>
+    <MudNavMenu>
+        <MudNavLink Match="NavLinkMatch.All">Store</MudNavLink>
+        <MudNavLink Match="NavLinkMatch.All">Library</MudNavLink>
+        <MudNavLink Match="NavLinkMatch.All">Community</MudNavLink>
+        <MudNavLink OnClick="_ => Open = false">Close Drawer</MudNavLink>
+    </MudNavMenu>
+</MudDrawer>
+
+@code {
+    [Parameter]
+    public bool Open { get; set; } = false;
+}

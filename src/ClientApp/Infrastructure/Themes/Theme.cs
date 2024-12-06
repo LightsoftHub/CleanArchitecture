@@ -18,7 +18,7 @@ public class Theme
             PaletteLight = new()
             {
                 // **Primary Colors**
-                Primary = "#7C4DFF", // Adjusted purple, used for highlights and key elements
+                Primary = "#009f97", // Adjusted purple, used for highlights and key elements
                 Secondary = "#9E9E9E", // Dark gray, secondary color
 
                 // **Background and Surface**
