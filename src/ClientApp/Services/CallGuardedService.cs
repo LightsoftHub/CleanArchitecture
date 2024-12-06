@@ -3,11 +3,11 @@ using MudBlazor;
 
 namespace CleanArch.ClientApp.Services;
 
-public class CallGuardedService(IToastDisplay toastService)
+public class CallGuardedService(IToastDisplay toastService, SpinnerService spinnerService)
 {
     public async Task<Result> ExecuteAsync(Func<Task<Result>> call, string successMessage = "")
     {
-        //spinnerService.Show();
+        spinnerService.Show();
 
         Result result;
 
@@ -38,7 +38,7 @@ public class CallGuardedService(IToastDisplay toastService)
             result = Result.Error(ex.Message);
         }
 
-        //spinnerService.Hide();
+        spinnerService.Hide();
 
         return result;
     }

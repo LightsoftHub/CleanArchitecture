@@ -5,22 +5,21 @@
 
             <DataAnnotationsValidator />
 
-            <div class="mb-3">
-                <MudTextField @bind-Value=newUser.UserName
-                    Label="Username" Required=true
-                    TextChanged=SearchUserDomain />
-            </div>
-
-            <div class="mb-3">
-                <MudTextField @bind-Value=newUser.Password InputType="InputType.Password" Label="Password" />
+            <div class="row mb-3">
+                <div class="col">
+                    <MudTextField @bind-Value=newUser.UserName Label="Username" Required=true TextChanged=SearchUserDomain />
+                </div>
+                <div class="col">
+                    <MudTextField @bind-Value=newUser.Password InputType="InputType.Password" Label="Password" />
+                </div>
             </div>
 
             <div class="row mb-3">
                 <div class="col">
-                    <MudTextField @bind-Value=newUser.FirstName Label="FirstName" Required=true />
+                    <MudTextField @bind-Value=newUser.FirstName Label="FirstName" />
                 </div>
                 <div class="col">
-                    <MudTextField @bind-Value=newUser.LastName Label="LastName" Required=true />
+                    <MudTextField @bind-Value=newUser.LastName Label="LastName" />
                 </div>
             </div>
 
@@ -28,13 +27,15 @@
                 <div class="col">
                     <MudTextField @bind-Value=newUser.Email Label="Email" />
                 </div>
+            </div>
+
+            <div class="row mb-3">
                 <div class="col">
                     <MudTextField @bind-Value=newUser.PhoneNumber Label="PhoneNumber" />
                 </div>
-            </div>
-
-            <div class="mb-3">
-                <MudCheckBox @bind-Value=newUser.UseDomainPassword Label="Use Domain Password" />
+                <div class="col">
+                    <MudCheckBox @bind-Value=newUser.UseDomainPassword Label="AD Password" />
+                </div>
             </div>
 
         </EditForm>

@@ -19,6 +19,7 @@ builder.Services.AddMudServices();
 
 builder.Services.AddScoped<IToastDisplay, ToastDisplay>();
 builder.Services.AddScoped<CallGuardedService>();
+builder.Services.AddScoped<SpinnerService>();
 
 builder.Services.AddHttpClients(builder.Configuration);
 builder.Services.AddHttpServices(typeof(HttpApiClientModule).Assembly);

@@ -1,6 +1,13 @@
 ﻿@page "/users"
 
-<MudTable Items="@users" Loading="loading" Dense="true" Hover="true" Bordered="true" Striped="true" Filter="new Func<UserDto,bool>(FilterFunc)" Class="p-3">
+<div class="mb-5 d-flex justify-content-end">
+    <MudButton Size="Size.Small" Variant="Variant.Outlined" OnClick="OpenCreateModalAsync">
+        <MudIcon Icon="@Icons.Material.Filled.Add" />
+        <MudText>New</MudText>
+    </MudButton>
+</div>
+
+<MudTable Items="@users" Loading="loading" Dense="true" Hover="true" Striped="true" Filter="new Func<UserDto,bool>(FilterFunc)" Class="p-3">
     <ToolBarContent>
         <MudStack Row Spacing="0" Class="flex-grow-1" Justify="Justify.SpaceBetween">
             <MudStack Row AlignItems="AlignItems.Start">
@@ -9,20 +16,14 @@
                     <MudText Typo="Typo.subtitle2">Users</MudText>
                     <MudText Typo="Typo.body2">View all users</MudText>
                 </MudStack>
-                <MudStack Row Spacing="1">
-                    <MudButton Size="Size.Small" Variant="Variant.Filled" OnClick="LoadDataAsync" Disabled="@loading">
-                        <MudIcon Icon="@Icons.Material.Filled.Refresh" />
-                        <MudText>Refresh</MudText>
-                    </MudButton>
-                    <MudButton Size="Size.Small" Variant="Variant.Filled" OnClick="OpenCreateModalAsync">
-                        <MudIcon Icon="@Icons.Material.Filled.Add" />
-                        <MudText>New</MudText>
-                    </MudButton>
-                </MudStack>
             </MudStack>
             <MudStack Spacing="0" AlignItems="AlignItems.End">
                 <MudStack Row Spacing="1">
                     <MudTextField @bind-Value="searchValue" Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+                    <MudButton Size="Size.Small" OnClick="LoadDataAsync" Disabled="@loading">
+                        <MudIcon Icon="@Icons.Material.Filled.Refresh" />
+                        <MudText>Refresh</MudText>
+                    </MudButton>
                 </MudStack>
             </MudStack>
         </MudStack>
@@ -40,11 +41,11 @@
         <MudTd DataLabel="Name">@context.FirstName @context.LastName</MudTd>
         <MudTd DataLabel="Email">@context.Email</MudTd>
         <MudTd DataLabel="Phone">@context.PhoneNumber</MudTd>
-        <MudTd DataLabel="Status">@context.Status</MudTd>
+        <MudTd DataLabel="Status"><span class="badge text-bg-primary">@context.Status</span></MudTd>
         <MudTd DataLabel="Status">
             <MudIconButton
-            Icon="@Icons.Material.Filled.Delete" Color="Color.Error" Size="Size.Small" aria-label="delete"
-            OnClick="() => DeleteAsync(context.Id, context.UserName)" />
+                Icon="@Icons.Material.Filled.Delete" Color="Color.Error" Size="Size.Small" aria-label="delete"
+                OnClick="() => DeleteAsync(context.Id, context.UserName)" />
         </MudTd>
     </RowTemplate>
     <PagerContent>
