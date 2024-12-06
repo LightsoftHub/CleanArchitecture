@@ -2,7 +2,7 @@
 
 <MudToolBar Class="justify-content-end">
     <MudIconButton Icon="@Icons.Material.Outlined.Refresh" Color="Color.Primary" Disabled="@loading" OnClick="LoadDataAsync" />
-    <MudIconButton Icon="@Icons.Material.Outlined.AddCircle" Color="Color.Primary" OnClick="@(() => OpenCreateModalAsync())" />
+    <MudIconButton Icon="@Icons.Material.Outlined.AddCircle" Color="Color.Primary" OnClick="@(() => OpenUpsertModalAsync())" />
 </MudToolBar>
 
 <MudTable Items="@roles" Loading="loading" Dense="true" Hover="true" Striped="true" Filter="new Func<RoleDto,bool>(FilterFunc)" Class="p-3">
@@ -34,11 +34,11 @@
         <MudTd DataLabel="Description">@context.Description</MudTd>
         <MudTd DataLabel="Action">
             <MudIconButton Icon="@Icons.Material.Filled.Edit"
-            Color="Color.Primary" Size="Size.Small" aria-label="delete"
-            OnClick="() => OpenCreateModalAsync(context)" />
+                Color="Color.Primary" Size="Size.Small" aria-label="delete"
+                OnClick="() => OpenUpsertModalAsync(context)" />
             <MudIconButton Icon="@Icons.Material.Filled.Delete"
-            Color="Color.Error" Size="Size.Small" aria-label="delete"
-            OnClick="() => DeleteAsync(context.Id, context.Name)" />
+                Color="Color.Error" Size="Size.Small" aria-label="delete"
+                OnClick="() => DeleteAsync(context.Id, context.Name)" />
         </MudTd>
     </RowTemplate>
     <PagerContent>
@@ -46,16 +46,12 @@
     </PagerContent>
 </MudTable>
 
-<UpdateRole_Panel Open="openEditPanel" />
-
 @code {
     private bool loading = false;
 
     private IEnumerable<RoleDto>? roles;
 
     private string? searchValue;
-
-    private bool openEditPanel = false;
 
     protected override async Task OnInitializedAsync()
     {
@@ -106,7 +102,7 @@
         }
     }
 
-    private async Task OpenCreateModalAsync(RoleDto? role = null)
+    private async Task OpenUpsertModalAsync(RoleDto? role = null)
     {
         var options = WebSettings.DEFAULT_DIALOG_OPTIONS;
 
@@ -132,11 +128,5 @@
         {
             await LoadDataAsync();
         }
-    }
-
-    private async Task OpenEditPanelAsync(string roleId)
-    {
-        openEditPanel = true;
-        await Task.Delay(1000);
     }
 }

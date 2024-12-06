@@ -1,8 +1,4 @@
-﻿@using System.Net.Http
-@using System.Net.Http.Json
-@using CleanArch.ClientApp.Services
-@using CleanArch.Shared.Authorization
-@using Microsoft.AspNetCore.Components.Authorization
+﻿@using Microsoft.AspNetCore.Components.Authorization
 @using Microsoft.AspNetCore.Components.Forms
 @using Microsoft.AspNetCore.Components.Routing
 @using Microsoft.AspNetCore.Components.Web
@@ -22,6 +18,8 @@
 
 @inject ICurrentUser CurrentUser
 
+@using CleanArch.Shared.Authorization
+@using CleanArch.ClientApp.Services
 @inject IToastDisplay ToastService
 @inject ICallGuardedService CallGuarded
 @inject SpinnerService SpinnerService
