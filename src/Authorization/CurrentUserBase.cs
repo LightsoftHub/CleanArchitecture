@@ -1,7 +1,7 @@
-﻿using CleanArchitechture.Auth;
+﻿using CleanArchitecture.Auth;
 using System.Security.Claims;
 
-namespace CleanArchitechture;
+namespace CleanArchitecture;
 
 public abstract class CurrentUserBase : ICurrentUser
 {

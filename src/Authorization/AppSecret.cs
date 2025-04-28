@@ -1,4 +1,4 @@
-﻿namespace CleanArchitechture;
+﻿namespace CleanArchitecture;
 
 public abstract class DefaultUser
 {

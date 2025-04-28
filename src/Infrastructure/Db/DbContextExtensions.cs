@@ -1,7 +1,7 @@
 ﻿using Light.Domain.Entities.Interfaces;
 using Light.Domain.ValueObjects;
 
-namespace CleanArchitechture.Db;
+namespace CleanArchitecture.Db;
 
 public static class DbContextExtensions
 {

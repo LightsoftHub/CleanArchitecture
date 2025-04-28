@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace CleanArchitechture.Db;
+namespace CleanArchitecture.Db;
 
 public static class MigrationExtensions
 {

@@ -1,8 +1,8 @@
-using CleanArchitechture.Auth;
+using CleanArchitecture.Auth;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Options;
 
-namespace CleanArchitechture;
+namespace CleanArchitecture;
 
 internal class PermissionPolicyProvider(
     IOptions<AuthorizationOptions> options) :

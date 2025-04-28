@@ -6,7 +6,7 @@ using Light.Identity.Options;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 
-namespace CleanArchitechture.Identity;
+namespace CleanArchitecture.Identity;
 
 internal class LoginService(
     UserManager<User> userManager,

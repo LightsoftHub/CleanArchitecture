@@ -1,4 +1,4 @@
-﻿using CleanArchitechture.Db;
+﻿using CleanArchitecture.Db;
 using Light.Identity;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;

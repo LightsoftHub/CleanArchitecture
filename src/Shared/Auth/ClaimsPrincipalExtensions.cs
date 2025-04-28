@@ -1,6 +1,6 @@
 using System.Security.Claims;
 
-namespace CleanArchitechture.Auth;
+namespace CleanArchitecture.Auth;
 
 public static class ClaimsPrincipalExtensions
 {

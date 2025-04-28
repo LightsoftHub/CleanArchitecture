@@ -1,7 +1,7 @@
 ﻿using Light.ActiveDirectory.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CleanArchitechture.Identity;
+namespace CleanArchitecture.Identity;
 
 [MustHavePermission(Permissions.Users.View)]
 public class UserController(

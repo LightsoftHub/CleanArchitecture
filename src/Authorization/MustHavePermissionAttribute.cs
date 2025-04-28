@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 
-namespace CleanArchitechture;
+namespace CleanArchitecture;
 
 public class MustHavePermissionAttribute : AuthorizeAttribute
 {

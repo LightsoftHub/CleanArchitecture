@@ -1,7 +1,7 @@
-﻿using CleanArchitechture.Auth;
+﻿using CleanArchitecture.Auth;
 using Light.Identity;
 
-namespace CleanArchitechture.Identity;
+namespace CleanArchitecture.Identity;
 
 public class AppClaimTypes : IClaimType
 {

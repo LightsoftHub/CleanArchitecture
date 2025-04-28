@@ -1,7 +1,7 @@
 ﻿using Light.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CleanArchitechture.Identity;
+namespace CleanArchitecture.Identity;
 
 /// <summary>
 /// move to other controller for current_user can get data when login without permission

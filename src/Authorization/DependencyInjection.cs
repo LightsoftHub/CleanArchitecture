@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CleanArchitechture;
+namespace CleanArchitecture;
 
 public static class DependencyInjection
 {

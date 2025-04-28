@@ -1,7 +1,7 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace CleanArchitechture.Auth;
+namespace CleanArchitecture.Auth;
 
 public class Permissions
 {

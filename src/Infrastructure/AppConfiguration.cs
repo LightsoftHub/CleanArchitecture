@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 
-namespace CleanArchitechture;
+namespace CleanArchitecture;
 
 public static class AppConfiguration
 {

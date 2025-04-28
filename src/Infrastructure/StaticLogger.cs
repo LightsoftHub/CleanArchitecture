@@ -1,7 +1,7 @@
 ﻿using Serilog;
 using Serilog.Core;
 
-namespace CleanArchitechture;
+namespace CleanArchitecture;
 
 public class StaticLogger
 {

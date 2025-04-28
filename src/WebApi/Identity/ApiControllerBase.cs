@@ -1,7 +1,7 @@
 ﻿using Light.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CleanArchitechture.Identity;
+namespace CleanArchitecture.Identity;
 
 [ApiExplorerSettings(GroupName = "Admin")]
 public abstract class ApiControllerBase : VersionedApiController;

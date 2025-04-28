@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CleanArchitechture.HealthChecks;
+namespace CleanArchitecture.HealthChecks;
 
 public static class Configure
 {

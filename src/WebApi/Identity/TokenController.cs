@@ -1,8 +1,8 @@
-﻿using CleanArchitechture.Contracts.Identity;
+﻿using CleanArchitecture.Contracts.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CleanArchitechture.Identity;
+namespace CleanArchitecture.Identity;
 
 [AllowAnonymous]
 [Route("api/v{version:apiVersion}/oauth")]

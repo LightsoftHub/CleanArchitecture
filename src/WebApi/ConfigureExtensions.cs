@@ -1,7 +1,7 @@
 ﻿using Asp.Versioning.Conventions;
-using CleanArchitechture.Identity;
-using CleanArchitechture.Modularity;
-using CleanArchitechture.Services;
+using CleanArchitecture.Identity;
+using CleanArchitecture.Modularity;
+using CleanArchitecture.Services;
 using FluentValidation;
 using HealthChecks.UI.Client;
 using Light.AspNetCore.Builder;
@@ -11,7 +11,7 @@ using Light.AspNetCore.Swagger;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using System.Reflection;
 
-namespace CleanArchitechture;
+namespace CleanArchitecture;
 
 public static class ConfigureExtensions
 {

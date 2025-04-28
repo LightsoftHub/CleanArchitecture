@@ -1,2 +1,2 @@
-﻿global using CleanArchitechture.Identity;
+﻿global using CleanArchitecture.Identity;
 global using Microsoft.EntityFrameworkCore;

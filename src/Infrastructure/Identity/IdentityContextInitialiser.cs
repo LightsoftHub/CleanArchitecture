@@ -1,9 +1,9 @@
-﻿using CleanArchitechture.Db;
+﻿using CleanArchitecture.Db;
 using Light.Identity.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 
-namespace CleanArchitechture.Identity;
+namespace CleanArchitecture.Identity;
 
 public class IdentityContextInitialiser(
     ILogger<IdentityContextInitialiser> logger,

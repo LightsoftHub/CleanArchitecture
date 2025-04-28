@@ -1,7 +1,7 @@
-﻿using CleanArchitechture.Db;
+﻿using CleanArchitecture.Db;
 using Light.Identity.EntityFrameworkCore;
 
-namespace CleanArchitechture.Identity;
+namespace CleanArchitecture.Identity;
 
 public class AppIdentityDbContext(
     ICurrentUser currentUser,

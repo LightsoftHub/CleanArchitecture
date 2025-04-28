@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CleanArchitechture.Identity;
+namespace CleanArchitecture.Identity;
 
 [MustHavePermission(Permissions.Roles.View)]
 public class RoleController(IRoleService roleService) : ApiControllerBase

@@ -5,8 +5,8 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
 	<SatelliteResourceLanguages>en</SatelliteResourceLanguages>
-	<RootNamespace>CleanArchitechture</RootNamespace>
-	<AssemblyName>CleanArchitechture.WebApi</AssemblyName>
+	<RootNamespace>CleanArchitecture</RootNamespace>
+	<AssemblyName>CleanArchitecture.WebApi</AssemblyName>
 	<UserSecretsId>6bfa1f49-26a0-487e-93ae-9201dcad2491</UserSecretsId>
   </PropertyGroup>
 

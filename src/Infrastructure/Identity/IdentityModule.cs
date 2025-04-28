@@ -1,5 +1,5 @@
-using CleanArchitechture.Db;
-using CleanArchitechture.Modularity;
+using CleanArchitecture.Db;
+using CleanArchitecture.Modularity;
 using Light.ActiveDirectory;
 using Light.Extensions.DependencyInjection;
 using Light.Identity;
@@ -7,7 +7,7 @@ using Light.Identity.Options;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CleanArchitechture.Identity;
+namespace CleanArchitecture.Identity;
 
 public class IdentityModule : AppModule
 {
@@ -50,7 +50,7 @@ public class IdentityModule : AppModule
 
     private void AddAuth(IServiceCollection services, IConfiguration configuration)
     {
-        var sectionName = "JWT";
+        var sectionName = "Jwt";
 
         // Override by BindConfiguration
         services.AddOptions<JwtOptions>().BindConfiguration(sectionName);

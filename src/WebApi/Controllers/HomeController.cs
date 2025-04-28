@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace CleanArchitechture.Controllers;
+namespace CleanArchitecture.Controllers;
 
 #if DEBUG
 [Route("/")]

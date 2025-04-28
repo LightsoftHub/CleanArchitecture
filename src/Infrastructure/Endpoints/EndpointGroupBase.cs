@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 
-namespace CleanArchitechture.Endpoints;
+namespace CleanArchitecture.Endpoints;
 
 public abstract class EndpointGroupBase
 {

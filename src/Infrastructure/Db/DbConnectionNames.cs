@@ -1,4 +1,4 @@
-﻿namespace CleanArchitechture.Db;
+﻿namespace CleanArchitecture.Db;
 
 public static class DbConnectionNames
 {

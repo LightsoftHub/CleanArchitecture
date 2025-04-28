@@ -4,8 +4,8 @@
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-	<RootNamespace>CleanArchitechture</RootNamespace>
-	<AssemblyName>CleanArchitechture.Infrastructure</AssemblyName>
+	<RootNamespace>CleanArchitecture</RootNamespace>
+	<AssemblyName>CleanArchitecture.Infrastructure</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

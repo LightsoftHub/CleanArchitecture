@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Routing;
 
-namespace CleanArchitechture.Modularity;
+namespace CleanArchitecture.Modularity;
 
 public abstract class AppHub : Light.AspNetCore.Modularity.IModuleEndpoint
 {

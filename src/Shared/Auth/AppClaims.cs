@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using System.Security.Claims;
 
-namespace CleanArchitechture.Auth;
+namespace CleanArchitecture.Auth;
 
 public abstract class AppClaims
 {
