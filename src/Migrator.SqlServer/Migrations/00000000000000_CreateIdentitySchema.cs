@@ -50,10 +50,10 @@ namespace Monolith.Admin.Migrator.SqlServer.Migrations
                     Title = table.Column<string>(maxLength: 250, nullable: false),
                     Message = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Url = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    MarkAsRead = table.Column<bool>(nullable: false),
-                    CreatedOn = table.Column<DateTimeOffset>(nullable: false),
+                    ReadStatus = table.Column<bool>(nullable: false),
+                    Created = table.Column<DateTimeOffset>(nullable: false),
                     CreatedBy = table.Column<string>(maxLength: 450, nullable: true),
-                    LastModifiedOn = table.Column<DateTimeOffset>(nullable: true),
+                    LastModified = table.Column<DateTimeOffset>(nullable: true),
                     LastModifiedBy = table.Column<string>(maxLength: 450, nullable: true),
                 },
                 constraints: table =>

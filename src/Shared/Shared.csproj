@@ -10,12 +10,12 @@
 
   <ItemGroup>
 	<PackageReference Include="FluentValidation" Version="11.11.0" />
-	<PackageReference Include="Lightsoft.Identity" Version="0.0.0.14" />
+	<PackageReference Include="Lightsoft.Identity" Version="0.0.0.15" />
 	<PackageReference Include="Mapster" Version="7.4.0" />
 	<PackageReference Include="Lightsoft.Ddd.Core" Version="0.0.0.12" />
 	<PackageReference Include="Lightsoft.Extensions" Version="0.0.0.11" />
 	<PackageReference Include="Lightsoft.FileGenerator" Version="0.0.0.14" />
-	<PackageReference Include="Lightsoft.Result" Version="0.0.0.12" />
+	<PackageReference Include="Lightsoft.Result" Version="0.0.0.13" />
   </ItemGroup>
 
 </Project>

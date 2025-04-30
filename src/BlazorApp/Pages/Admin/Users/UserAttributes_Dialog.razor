@@ -1,0 +1,104 @@
+﻿<MudDialog Style="position: relative;">
+    <DialogContent>
+        <table class="table table-hover table-bordered">
+            <tbody>
+                @foreach (var record in records)
+                {
+                    <tr>
+                        <td>@record.Key</td>
+                        <td>
+                            <Input @bind-Value="record.Value" />
+                        </td>
+                        <td>
+                            <IconActionButtons IconAction="IconActionButtons.Action.Update" OnClick="() => UpdateAsync(record)" />
+                            <IconActionButtons IconAction="IconActionButtons.Action.Delete" OnClick="() => DeleteAsync(record.Key)" />
+                        </td>
+                    </tr>
+                }
+
+                <tr>
+                    <td>
+                        <Input Label="Key" Variant="Variant.Filled" @bind-Value=newAttribute.Key />
+                    </td>
+                    <td>
+                        <Input Label="Value" Variant="Variant.Filled" @bind-Value=newAttribute.Value />
+                    </td>
+                    <td>
+                        <IconActionButtons IconAction="IconActionButtons.Action.Create" OnClick="AddAsync" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </DialogContent>
+</MudDialog>
+
+<Overlay IsProcessing="processing" />
+
+@code {
+    [CascadingParameter]
+    private IMudDialogInstance dialog { get; set; } = default!;
+
+    [Parameter]
+    public string Id { get; set; } = null!;
+
+    private IEnumerable<UserAttributeDto> records = [];
+
+    private NewAttribute newAttribute {get; set;} = new();
+
+    private bool processing = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadAsync();
+    }
+
+    private async Task LoadAsync()
+    {
+        processing = true;
+
+        records = (await UserService.GetAttributesAsync(Id)).Data;
+        newAttribute = new();
+
+        processing = false;
+    }
+
+    private async Task AddAsync()
+    {
+        if (string.IsNullOrEmpty(newAttribute.Key) || string.IsNullOrEmpty(newAttribute.Value))
+        {
+            ToastService.ShowWarning("Key and Value are required");
+            return;
+        }
+        
+        await CallGuarded.ExecuteAsync(
+            () => UserService.AddAttributeAsync(Id, newAttribute.Key, newAttribute.Value),
+            "Attribute added successfully",
+            () => LoadAsync()
+        );
+    }
+
+    private async Task UpdateAsync(UserAttributeDto dto)
+    {
+        await CallGuarded.ExecuteAsync(
+            () => UserService.AddAttributeAsync(Id, dto.Key, dto.Value),
+            "Attribute updated successfully",
+            () => LoadAsync()
+        );
+    }
+
+    private async Task DeleteAsync(string key)
+    {
+        await CallGuarded.ExecuteAsync(
+            () => UserService.DeleteAttributeAsync(Id, key),
+            "Attribute deleted successfully",
+            () => LoadAsync()
+        );
+    }
+
+    public class NewAttribute
+    {
+        public string Key { get; set; } = "";
+
+        public string Value { get; set; } = "";
+    }
+}
