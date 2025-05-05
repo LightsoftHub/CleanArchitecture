@@ -76,6 +76,13 @@
 
             await JSRuntime.PlayNoti();
         });
+
+        SignalR.On<ForceLogoutMessage>(async (message) =>
+        {
+            await IdentityManager.LogoutAsync();
+
+            await InvokeAsync(StateHasChanged);
+        });
     }
 
     private async Task LoadUserNotificationsAsync()

@@ -50,7 +50,7 @@ public class NotificationController(
     }
 
     [HttpPost]
-    public async Task<IActionResult> SendByUserId(string fromUserId, string? fromName, string toUserId, [FromBody] SystemMessage request)
+    public async Task<IActionResult> SendToUserId(string fromUserId, string? fromName, string toUserId, [FromBody] SystemMessage request)
     {
         await notificationService.SaveAsync(fromUserId, fromName, toUserId, request);
 
@@ -74,6 +74,14 @@ public class NotificationController(
             // send notify after save record for load notification entries from API when receive
             await hub.SendAsync(user.Id, request);
         }
+
+        return Ok();
+    }
+
+    [HttpPost("force_logout")]
+    public async Task<IActionResult> ForceLogout([FromBody] ForceLogoutMessage request)
+    {
+        await hub.SendAsync(request.UserId, request);
 
         return Ok();
     }
