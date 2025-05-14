@@ -10,17 +10,17 @@
 
   <ItemGroup>
 	<PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="9.0.0" />
-	<PackageReference Include="Lightsoft.ActiveDirectory" Version="0.0.0.15" />
-	<PackageReference Include="Lightsoft.AspNetCore.Extensions" Version="0.0.0.51" />
-	<PackageReference Include="Lightsoft.AspNetCore.Modularity" Version="0.0.0.3" />
-	<PackageReference Include="Lightsoft.EntityFrameworkCore" Version="0.0.0.14" />
-	<PackageReference Include="Lightsoft.Identity.EntityFrameworkCore" Version="0.0.0.22" />
-	<PackageReference Include="Lightsoft.Serilog" Version="0.0.0.8" />
+	<PackageReference Include="Lightsoft.ActiveDirectory" Version="0.0.0.16" />
+	<PackageReference Include="Lightsoft.AspNetCore.Extensions" Version="0.0.0.52" />
+	<PackageReference Include="Lightsoft.AspNetCore.Modularity" Version="0.0.0.4" />
+	<PackageReference Include="Lightsoft.EntityFrameworkCore" Version="0.0.0.15" />
+	<PackageReference Include="Lightsoft.Identity.EntityFrameworkCore" Version="0.0.0.23" />
+	<PackageReference Include="Lightsoft.Serilog" Version="0.0.0.9" />
   </ItemGroup>
 
   <ItemGroup>
-	<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.4" />
-	<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.4" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.5" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.5" />
   </ItemGroup>
 
   <ItemGroup>

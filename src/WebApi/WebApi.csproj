@@ -14,8 +14,8 @@
 	<PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="9.0.0" />
 	<PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
 	<PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.11.0" />
-	<PackageReference Include="Lightsoft.AspNetCore.Swagger" Version="0.0.0.11" />
-	<PackageReference Include="Lightsoft.Serilog" Version="0.0.0.8" />
+	<PackageReference Include="Lightsoft.AspNetCore.Swagger" Version="0.0.0.12" />
+	<PackageReference Include="Lightsoft.Serilog" Version="0.0.0.9" />
 	<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.2" />
 	<PackageReference Include="Spectre.Console" Version="0.50.0" />
   </ItemGroup>
