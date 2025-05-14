@@ -1,7 +1,7 @@
-﻿using Light.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿#nullable disable
 
-#nullable disable
+using Light.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Monolith.Admin.Migrator.SqlServer.Migrations
 {

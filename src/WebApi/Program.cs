@@ -1,4 +1,3 @@
-using FluentValidation.AspNetCore;
 using Light.Serilog;
 using Serilog;
 using Spectre.Console;
@@ -18,10 +17,6 @@ try
 
     // Add services to the container.
     builder.Services.ConfigureServices(builder.Configuration);
-
-    builder.Services
-        .AddFluentValidationAutoValidation()
-        .AddFluentValidationClientsideAdapters();
 
     builder.Services
         .AddLowercaseControllers()
