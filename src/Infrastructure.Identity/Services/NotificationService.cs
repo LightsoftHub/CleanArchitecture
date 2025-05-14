@@ -1,12 +1,12 @@
 ﻿using CleanArchitecture.Contracts.Notifications;
 using CleanArchitecture.Identity;
+using CleanArchitecture.Models;
 using CleanArchitecture.Notifications;
-using CleanArchitecture.SignalR.Models;
 using Light.EntityFrameworkCore.Extensions;
 using Light.Specification;
 using Mapster;
 
-namespace CleanArchitecture.SignalR;
+namespace CleanArchitecture.Services;
 
 internal class NotificationService(AppIdentityDbContext context) : INotificationService
 {

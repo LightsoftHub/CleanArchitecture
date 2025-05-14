@@ -1,4 +1,4 @@
-﻿namespace CleanArchitecture.SignalR.Models;
+﻿namespace CleanArchitecture.Models;
 
 public class Notification : Light.Domain.Entities.AuditableEntity
 {

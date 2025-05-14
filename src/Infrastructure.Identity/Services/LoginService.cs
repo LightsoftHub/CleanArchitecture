@@ -1,4 +1,5 @@
-﻿using Light.ActiveDirectory.Interfaces;
+﻿using CleanArchitecture.Identity;
+using Light.ActiveDirectory.Interfaces;
 using Light.Identity;
 using Light.Identity.EntityFrameworkCore;
 using Light.Identity.Models;
@@ -6,7 +7,7 @@ using Light.Identity.Options;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 
-namespace CleanArchitecture.Identity;
+namespace CleanArchitecture.Services;
 
 internal class LoginService(
     UserManager<User> userManager,

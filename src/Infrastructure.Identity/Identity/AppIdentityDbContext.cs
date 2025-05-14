@@ -1,5 +1,5 @@
 ﻿using CleanArchitecture.Db;
-using CleanArchitecture.SignalR.Models;
+using CleanArchitecture.Models;
 using Light.Identity.EntityFrameworkCore;
 
 namespace CleanArchitecture.Identity;

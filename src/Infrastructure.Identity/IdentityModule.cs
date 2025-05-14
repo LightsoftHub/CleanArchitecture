@@ -1,5 +1,8 @@
 using CleanArchitecture.Db;
+using CleanArchitecture.Identity;
 using CleanArchitecture.Modularity;
+using CleanArchitecture.Notifications;
+using CleanArchitecture.Services;
 using Light.ActiveDirectory;
 using Light.Extensions.DependencyInjection;
 using Light.Identity;
@@ -7,7 +10,7 @@ using Light.Identity.Options;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CleanArchitecture.Identity;
+namespace CleanArchitecture;
 
 public class IdentityModule : AppModule
 {
@@ -46,6 +49,7 @@ public class IdentityModule : AppModule
         AddAuth(services, configuration);
 
         services.AddScoped<ILoginService, LoginService>();
+        services.AddScoped<INotificationService, NotificationService>();
     }
 
     private void AddAuth(IServiceCollection services, IConfiguration configuration)

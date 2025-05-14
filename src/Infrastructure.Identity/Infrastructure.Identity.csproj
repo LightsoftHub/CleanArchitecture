@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+	<RootNamespace>CleanArchitecture</RootNamespace>
+	<AssemblyName>CleanArchitecture.Infrastructure.Identity</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+	<PackageReference Include="AspNetCore.HealthChecks.UI.Client" />
+	<PackageReference Include="Lightsoft.ActiveDirectory" />
+	<PackageReference Include="Lightsoft.AspNetCore.Extensions" />
+	<PackageReference Include="Lightsoft.AspNetCore.Modularity" />
+	<PackageReference Include="Lightsoft.EntityFrameworkCore" />
+	<PackageReference Include="Lightsoft.Identity.EntityFrameworkCore" />
+	<PackageReference Include="Lightsoft.Serilog" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Application\Application.csproj" />
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

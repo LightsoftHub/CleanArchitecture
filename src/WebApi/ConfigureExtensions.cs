@@ -1,5 +1,4 @@
 ﻿using Asp.Versioning.Conventions;
-using CleanArchitecture.Identity;
 using CleanArchitecture.Modularity;
 using CleanArchitecture.Services;
 using FluentValidation;
