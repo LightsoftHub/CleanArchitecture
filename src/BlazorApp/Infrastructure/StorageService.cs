@@ -1,5 +1,6 @@
 ﻿using BlazorApp.Core;
 using Blazored.LocalStorage;
+using Light.Blazor;
 
 namespace BlazorApp.Infrastructure;
 

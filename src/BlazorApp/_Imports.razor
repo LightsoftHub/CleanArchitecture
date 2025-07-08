@@ -21,9 +21,14 @@
 @using Mapster
 
 @using Light.Contracts
+@using Light.Blazor
+@using Light.MudBlazor
 @using Light.Extensions
 @using Light.File.Excel
 @inject IExcelService ExcelService
+@inject IToastDisplay ToastService
+@inject ICallGuardedService CallGuarded
+@inject SpinnerService SpinnerService
 
 @using CleanArchitecture
 @using CleanArchitecture.Auth
@@ -36,9 +41,6 @@
 @using BlazorApp.Core.ViewModels
 @using BlazorApp.Layout
 @using BlazorApp.Pages
-@inject IToastDisplay ToastService
-@inject ICallGuardedService CallGuarded
-@inject SpinnerService SpinnerService
 @inject IWebSettings WebSettings
 
 

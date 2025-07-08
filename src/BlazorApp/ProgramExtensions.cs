@@ -1,10 +1,12 @@
 global using CleanArchitecture;
 global using CleanArchitecture.Auth;
+global using Light.Blazor;
 using BlazorApp.Core;
 using BlazorApp.Core.Auth;
 using BlazorApp.Infrastructure;
 using Blazored.LocalStorage;
 using Light.Extensions.DependencyInjection;
+using Light.MudBlazor;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components.Authorization;
 using MudBlazor.Services;
@@ -21,9 +23,7 @@ public static class ProgramExtensions
         services.AddSingleton<IStorageService, StorageService>();
 
         services.AddSingleton<IWebSettings, WebSettings>();
-        services.AddScoped<IToastDisplay, ToastDisplay>();
-        services.AddScoped<SpinnerService>();
-        services.AddScoped<ICallGuardedService, CallGuardedService>();
+
         services.AddScoped<SignalRClient>();
         services.AddScoped<LayoutService>();
 
@@ -32,7 +32,7 @@ public static class ProgramExtensions
         services.AddHttpClients(configuration);
         services.AddHttpServices(typeof(HttpApiClientModule).Assembly);
 
-        services.AddMudServices();
+        services.AddMudBlazorExtraComponents();
 
         services.AddAuth();
 

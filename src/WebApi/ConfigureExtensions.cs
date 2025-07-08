@@ -1,6 +1,7 @@
 ﻿using Asp.Versioning.Conventions;
 using CleanArchitecture.Modularity;
 using CleanArchitecture.Services;
+using CleanArchitecture.SignalR;
 using FluentValidation;
 using HealthChecks.UI.Client;
 using Light.AspNetCore.Builder;
@@ -20,6 +21,7 @@ public static class ConfigureExtensions
         [
             typeof(Program).Assembly,
             typeof(IdentityModule).Assembly,
+            typeof(SignalRModule).Assembly,
         ];
 
     public static IServiceCollection ConfigureServices(this IServiceCollection services, IConfiguration configuration)

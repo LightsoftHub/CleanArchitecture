@@ -6,37 +6,38 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- Core -->
-    <PackageVersion Include="Microsoft.AspNetCore.Authorization" Version="$(AspnetVersion)" />
-	<PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="$(AspnetVersion)" />
-	<PackageVersion Include="Microsoft.EntityFrameworkCore.InMemory" Version="$(AspnetVersion)" />
-    <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="$(AspnetVersion)" />
-	<PackageVersion Include="Microsoft.EntityFrameworkCore.Tools" Version="$(AspnetVersion)" />
-	<PackageVersion Include="Microsoft.Extensions.Configuration" Version="$(AspnetVersion)" />
-	<PackageVersion Include="Microsoft.Extensions.Configuration.Abstractions" Version="$(AspnetVersion)" />
+    <PackageVersion Include="Lightsoft.MudBlazor" Version="0.0.0.1-beta8" />
+    <PackageVersion Include="Microsoft.AspNetCore.Authorization" Version="9.0.6" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.6" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.6" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.6" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Tools" Version="$(AspnetVersion)" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration" Version="9.0.6" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration.Abstractions" Version="$(AspnetVersion)" />
     <PackageVersion Include="Microsoft.Extensions.Configuration.Binder" Version="$(AspnetVersion)" />
-    <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="$(AspnetVersion)" />
-	<PackageVersion Include="Microsoft.Extensions.Hosting" Version="$(AspnetVersion)" />
-	<PackageVersion Include="Microsoft.Extensions.Hosting.Abstractions" Version="$(AspnetVersion)" />
-    <PackageVersion Include="Microsoft.Extensions.Http" Version="$(AspnetVersion)" />
-    <PackageVersion Include="Microsoft.Extensions.Identity.Core" Version="$(AspnetVersion)" />
-    <PackageVersion Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.2" /> 
+    <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.6" />
+    <PackageVersion Include="Microsoft.Extensions.Hosting" Version="9.0.6" />
+    <PackageVersion Include="Microsoft.Extensions.Hosting.Abstractions" Version="9.0.6" />
+    <PackageVersion Include="Microsoft.Extensions.Http" Version="9.0.6" />
+    <PackageVersion Include="Microsoft.Extensions.Identity.Core" Version="9.0.6" />
+    <PackageVersion Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.22.1" />
     <!-- Light Framework -->
-	<PackageVersion Include="Lightsoft.ActiveDirectory" Version="0.0.0.16" />
-    <PackageVersion Include="Lightsoft.AspNetCore.Extensions" Version="0.0.0.52" />
+    <PackageVersion Include="Lightsoft.ActiveDirectory" Version="0.0.0.17" />
+    <PackageVersion Include="Lightsoft.AspNetCore.Extensions" Version="9.0.6.3" />
     <PackageVersion Include="Lightsoft.AspNetCore.Modularity" Version="0.0.0.4" />
-    <PackageVersion Include="Lightsoft.AspNetCore.Swagger" Version="0.0.0.12" />
+    <PackageVersion Include="Lightsoft.AspNetCore.Swagger" Version="9.0.6.2" />
     <PackageVersion Include="Lightsoft.Caching" Version="0.0.0.5" />
-    <PackageVersion Include="Lightsoft.Ddd.Core" Version="0.0.0.13" />
-    <PackageVersion Include="Lightsoft.EntityFrameworkCore" Version="0.0.0.15" />
-    <PackageVersion Include="Lightsoft.Extensions" Version="0.0.0.12" />
+    <PackageVersion Include="Lightsoft.Ddd.Core" Version="0.0.0.14" />
+    <PackageVersion Include="Lightsoft.EntityFrameworkCore" Version="9.0.6.1" />
+    <PackageVersion Include="Lightsoft.Extensions" Version="0.0.0.13" />
     <PackageVersion Include="Lightsoft.EventBus" Version="0.0.0.7" />
     <PackageVersion Include="Lightsoft.EventBus.MassTransit.RabbitMQ" Version="0.0.0.21" />
-    <PackageVersion Include="Lightsoft.FileGenerator" Version="0.0.0.15" />
-    <PackageVersion Include="Lightsoft.Identity" Version="0.0.0.16" />
-    <PackageVersion Include="Lightsoft.Identity.EntityFrameworkCore" Version="0.0.0.23" />
+    <PackageVersion Include="Lightsoft.FileGenerator" Version="0.0.0.19" />
+    <PackageVersion Include="Lightsoft.Identity" Version="9.0.6.1" />
+    <PackageVersion Include="Lightsoft.Identity.EntityFrameworkCore" Version="9.0.6.1" />
     <PackageVersion Include="Lightsoft.Mail.Contracts" Version="0.0.0.9" />
-    <PackageVersion Include="Lightsoft.Result" Version="0.0.0.14" />
-    <PackageVersion Include="Lightsoft.Serilog" Version="0.0.0.9" />
+    <PackageVersion Include="Lightsoft.Result" Version="0.0.0.15" />
+    <PackageVersion Include="Lightsoft.Serilog" Version="0.0.0.11" />
     <!-- Hangfire -->
     <PackageVersion Include="Hangfire.AspNetCore" Version="1.8.18" />
     <PackageVersion Include="Hangfire.Dashboard.Basic.Authentication" Version="7.0.1" />
@@ -53,14 +54,14 @@
     <PackageVersion Include="FluentValidation.DependencyInjectionExtensions" Version="12.0.0" />
     <PackageVersion Include="Mapster" Version="7.4.0" />
     <PackageVersion Include="Spectre.Console" Version="0.50.0" />
-	<!-- Blazor Client -->
-	<PackageVersion Include="Blazored.LocalStorage" Version="4.5.0" />
-	<PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly" Version="$(AspnetVersion)" />
-	<PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="$(AspnetVersion)" />
-	<PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="$(AspnetVersion)" PrivateAssets="all" />
-	<PackageVersion Include="Microsoft.AspNetCore.SignalR.Client" Version="$(AspnetVersion)" />
-	<PackageVersion Include="MudBlazor" Version="8.6.0" />
-	<PackageVersion Include="MudBlazor.ThemeManager" Version="3.0.0" />
-	<PackageVersion Include="QRCoder" Version="1.6.0" />
+    <!-- Blazor Client -->
+    <PackageVersion Include="Blazored.LocalStorage" Version="4.5.0" />
+    <PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly" Version="9.0.6" />
+    <PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="9.0.6" />
+    <PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="9.0.6" PrivateAssets="all" />
+    <PackageVersion Include="Microsoft.AspNetCore.SignalR.Client" Version="9.0.6" />
+    <PackageVersion Include="MudBlazor" Version="8.9.0" />
+    <PackageVersion Include="MudBlazor.ThemeManager" Version="3.0.0" />
+    <PackageVersion Include="QRCoder" Version="1.6.0" />
   </ItemGroup>
 </Project>

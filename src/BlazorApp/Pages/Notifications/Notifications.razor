@@ -1,6 +1,6 @@
 ﻿@page "/notifications"
 
-<ServerTable State="state" SearchPermission="@Permissions.System.Notification">
+<Remote_Table State="state" SearchPermission="@Permissions.System.Notification">
     <SearchContent>
         
         <SelectUser List="users" SelectedUserChanged="OnSelectUserChanged" />
@@ -21,10 +21,10 @@
         <td class="text-break">@context.Message</td>
         <td>@context.Created.ToUniversalTime()</td>
     </RowTemplate>
-</ServerTable>
+</Remote_Table>
 
 @code {
-    private ServerData<NotificationDto, NotificationLookup> state = null!;
+    private RemoteTable<NotificationDto, NotificationLookup> state = null!;
 
     private NotificationLookup lookup => state.Lookup;
 
